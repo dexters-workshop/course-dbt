@@ -3,8 +3,7 @@
 
 At Greenery, we adhere to dbt recommendations and best-practices for how to structure our dbt-project (most text in this style guide is directly from dbt-docs from the dbt-labs website - minor tweaks as needed)
 
-As we grow at Greenery, we will evolve our best-practices and our overall style-guide. For now we will follow dbt recommendations VERY closely and they can be found here:
-- [dbt Best practice guides for structuring dbt-projects](https://docs.getdbt.com/guides/best-practices)
+As we grow at Greenery, we will evolve our best-practices and our overall style-guide. For now we will follow dbt recommendations VERY closely and they can be found here: [dbt Best practice guides for structuring dbt-projects](https://docs.getdbt.com/guides/best-practices)
 
 
 ### Someday/Maybe
