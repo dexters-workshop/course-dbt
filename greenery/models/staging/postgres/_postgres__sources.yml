@@ -1,139 +1,36 @@
 version: 2
 
 sources:
-
   - name: postgres # name of the source
-    description: "A replica of the postgres database used to power the greenery app"
+    description: Replica of the postgres database used to power the greenery app
     database: raw  # this is the name of our database in snowflake
     schema: public # this is the schema where our raw data lives in snowflake
 
-    freshness:     # come back to this once i understand if we are using it
-
     tables:
-
       - name: addresses
-        description: "Address-level table for storing geographic information about our greenery user-base"
-        columns:
-          - name: address_id
-            description: "UUID for each unique address on platform"
-          - name: address
-            description: "The first few lines of the address"
-          - name: zipcode
-            description: "The zipcode of the address"
-          - name: state
-            description: "State this delivery address is based in"
-          - name: country
-            description: "Country this delivery address is based in"
-
-
-      - name: users
-        description: "User-level table for storing general information of our greenery user-base"
-        columns:
-          - name: user_id
-            description: "UUID for each unique user on platform (PK)"
-          - name: first_name
-            description: "First name of the user"
-          - name: last_name
-            description: "Last name of the user"
-          - name: email
-            description: "Email address of the user"
-          - name: phone_number
-            description: "Phone number of the user"
-          - name: created_at
-            description: "Timestamp the user was created"
-          - name: updated_at
-            description: "Timestamp the user was last updated"
-          - name: address_id
-            description: "Default delivery address for the user"
-
-
-      - name: promos
-        description: "Promo-level table with each unique promotion ran at greenery"
-        columns:
-          - name: promo_id
-            description: "Each unique promocode on platform"
-          - name: discount
-            description: "Absolute dollar amount that is given off with the code"
-          - name: status
-            description: "Is the promo code active or disabled"
-
-
-      - name: products
-        description: "Product-level table with each greenery product and each products associated details"
-        columns:
-          - name: product_id
-            description: "GUID for each unique product on platform"
-          - name: name
-            description: "Name of product"
-          - name: price
-            description: "Price of the product"
-          - name: inventory
-            description: "Amount of the inventory we have for this product"
-
-
-      - name: orders
-        description: "Order-level details for each order made at greenery"
-        columns:
-          - name: order_id
-            description: "UUID for each unique order on platform"
-          - name: user_id
-            description: "UserId (GUID) of the user that placed this order"
-          - name: promo_id
-            description: "PromoId (GUID) if any was used in the order"
-          - name: address_id
-            description: "Delivery addressID (GUID) for this order"
-          - name: created_at
-            description: "Timestamp when the order was created"
-          - name: order_cost
-            description: "Dollar amount of the items in the order"
-          - name: shipping_cost
-            description: "Cost of shipping for the order"
-          - name: order_total
-            description: "Total cost of the order including shipping"
-          - name: tracking_id
-            description: "Tracking number (GUID) for the order/package"
-          - name: shipping_service
-            description: "Company that was used for shipping"
-          - name: estimated_delivery_at
-            description: "Estimated date of delivery"
-          - name: delivered_at
-            description: "Actual timestamp of delivery"
-          - name: status
-            description: "Status of the order"
-
-
-      - name: order_items
-        description: "item-level table for all items/products associated with each greenery user order"
-        columns:
-          - name: order_id
-            description: "orderId (guid) of this order"
-          - name: product_id
-            description: "productId (guid) of a single item in this order"
-          - name: quantity
-            description: "number of units of the product in this order"
-
+        description: >
+          Address-level table for storing geographic information about our greenery user-base
 
       - name: events
-        description: "event-level table with event details by user sessions"
-        columns:
-          - name: event_id
-            description: "UUID of each unique event on the platform"
-          - name: session_id
-            description: "UUID of each browsing session on the platform which can contain many events"
-          - name: user_id
-            description: "UUID of the user that this event is associated with"
-          - name: page_url
-            description: "URL that the event happened on"
-          - name: created_at
-            description: "Timestamp of the event"
-          - name: event_type
-            description: "Type of event"
-          - name: order_id
-            description: "UUID of order, if the event is specific to an order (mostly used for checkout)"
-          - name: product_id
-            description: "UUID of product, if the event is specific to a product"
+        description: > 
+          Event-level table with event details by user sessions
 
+      - name: order_items
+        description: >
+          Item-level table for all items/products associated with each greenery user order
 
+      - name: orders
+        description: >
+          Order-level details for each order made at greenery
 
+      - name: products
+        description: >
+          Product-level table with each greenery product and each products associated details
 
-          
+      - name: promos
+        description: >
+          Promo-level table with each unique promotion ran at greenery
+
+      - name: users
+        description: >
+          User-level table for storing general information about each of our greenery users
