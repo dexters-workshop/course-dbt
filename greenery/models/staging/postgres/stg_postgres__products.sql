@@ -7,7 +7,7 @@ with products_source as (
 
 ),
 
-staged as (
+standardized as (
 
     select
         product_id as product_guid
@@ -19,4 +19,4 @@ staged as (
 
 )
 
-select * from staged
+select * from standardized

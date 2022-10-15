@@ -1,8 +1,11 @@
 version: 2
 
+# config file for our postgres system that houses our raw data for the greenery app
+
 sources:
-  - name: postgres # name of the source
-    description: Replica of the postgres database used to power the greenery app
+  - name: postgres # name of the source - imp. for calling in sql files when using source('source-name', 'table-name') function
+    description: >
+      Replica of the postgres database used to power the greenery app
     database: raw  # this is the name of our database in snowflake
     schema: public # this is the schema where our raw data lives in snowflake
 

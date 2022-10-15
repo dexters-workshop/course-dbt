@@ -6,157 +6,60 @@ models:
     description: "Address-level table for storing geographic information about our greenery user-base"
     columns:
       - name: user_address_guid
-        description: "UUID for each unique address on platform"
-
-      - name: user_address
-        description: "The first few lines of the address"
-
-      - name: user_state
-        description: "State this delivery address is based in"
-
-      - name: user_country
-        description: "Country this delivery address is based in"
-
+        tests:
+          - not_null
+          - unique
       - name: user_zipcode
-        description: "The zipcode of the address"
-
-
-  - name: stg_postgres__events
-    description: "Event-level table with event details by user sessions"
-    columns:
-      - name: event_guid
-        description: "UUID of each unique event on the platform"
-
-      - name: session_guid
-        description: "UUID of each browsing session on the platform which can contain many events"
-
-      - name: user_guid
-        description: "UUID of the user that this event is associated with"
-
-      - name: order_guid
-        description: "UUID of order, if the event is specific to an order (mostly used for checkout)"
-
-      - name: product_guid
-        description: "UUID of product, if the event is specific to a product"
-
-      - name: page_url
-        description: "URL that the event happened on"
-
-      - name: event_type
-        description: "Type of event"
-
-      - name: created_at_utc
-        description: "Timestamp of the event"
-
-
-  - name: stg_postgres__order_items
-    description: "Item-level table for all items/products associated with each greenery user order"
-    columns:
-      - name: order_guid
-        description: "GUID for each unique order on platform"
-
-      - name: product_guid
-        description: "Product GUID of a single item in this order"
-
-      - name: product_quanity
-        description: "Number of units of the product in this order"
-
-
-  - name: stg_postgres__orders
-    description: "Order-level details for each order made by users at greenery"
-    columns:
-      - name: order_guid
-        description: "GUID for each unique order on platform"
-
-      - name: user_guid
-        description: "UserId (GUID) of the user that placed this order"
-
-      - name: tracking_guid
-        description: "Tracking number (GUID) for the order/package"
-
-      - name: address_guid
-        description: "Delivery addressID (GUID) for this order"
-
-      - name: promo_id
-        description: "PromoId (GUID) if any was used in the order"
-
-      - name: created_at_utc
-        description: "Timestamp when the order was created"
-
-      - name: estimated_delivery_at_utc
-        description: "Estimated timestamp/date (UTC) of delivery"
-
-      - name: delivered_at_utc
-        description: "Actual timestamp (UTC) of delivery"
-
-      - name: shipping_service
-        description: "Company that was used for shipping"
-
-      - name: status
-        description: "Status of the order"
-
-      - name: order_cost
-        description: "Dollar amount of the items in the order"
-
-      - name: shipping_cost
-        description: "Cost of shipping for the order"
-
-      - name: order_total
-        description: "Total cost of the order including shipping"
-
-
-  - name: stg_postgres__products
-    description: "Product-level table with each greenery product and each products associated details"
-    columns:
-      - name: product_guid
-        description: "GUID for each unique product on platform"
-
-      - name: product_name
-        description: "Name of product"
-
-      - name: product_price
-        description: "Price of the product"
-
-      - name: product_inventory
-        description: "Amount of the inventory we have for this product"
-
-
-  - name: stg_postgres__promos
-    description: "Promo-level table with each unique promotion ran at greenery"
-    columns:
-      - name: promo_code
-        description: "Each unique promocode on platform"
-
-      - name: promo_status
-        description: "Absolute dollar amount that is given off with the code"
-
-      - name: promo_discount_dollars
-        description: "Is the promo code active or disabled"
-
+        tests:
+          - bad_zipcodes
 
   - name: stg_postgres__users
     description: "User-level table for storing general information of our greenery user-base"
     columns:
       - name: user_guid
-        description: "UUID for each unique user on platform (PK)"
+        tests:
+          - not_null
+          - unique
 
-      - name: user_address_guid
-        description: "UUID for each unique address on platform"
+  - name: stg_postgres__promos
+    description: "Promo-level table with each unique promotion ran at greenery"
+    columns:
+      - name: promo_code
+        tests:
+          - not_null
+          - unique
 
-      - name: user_first_name
-        description: "First name of the user"
+  - name: stg_postgres__products
+    description: "Product-level table with each greenery product and each products associated details"
+    columns:
+      - name: product_guid
+        tests:
+          - not_null
+          - unique
+      - name: product_price
+        tests:
+          - positive_values
 
-      - name: user_last_name
-        description: "Last name of the user"
+  - name: stg_postgres__orders
+    description: "Order-level details for each order made by users at greenery"
+    columns:
+      - name: order_guid
+        tests:
+          - not_null
+          - unique
 
-      - name: user_email
-        description: "Email address of the user"
+  - name: stg_postgres__order_items
+    description: "Item-level table for all items/products associated with each greenery user order"
+    columns:
+      - name: order_product_guid
+        tests:
+          - not_null
+          - unique
 
-      - name: user_phone_number
-        description: "Phone number of the user"
-
-      - name: created_at_utz
-        description: "Timestamp the user was created"
-
-      - name: udpated_at_utz
-        description: "Timestamp the user was last updated"
+  - name: stg_postgres__events
+    description: "Event-level table with event details by user sessions"
+    columns:
+      - name: event_guid
+        tests:
+          - not_null
+          - unique

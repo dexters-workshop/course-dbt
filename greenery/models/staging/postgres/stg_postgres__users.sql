@@ -8,7 +8,7 @@ users_source as (
 
 ),
 
-staged as (
+standardized as (
 
     select
         -- ids
@@ -29,4 +29,4 @@ staged as (
 
 )
 
-select * from staged
+select * from standardized

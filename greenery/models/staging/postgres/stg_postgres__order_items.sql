@@ -7,11 +7,12 @@ with order_items_source as (
 
 ),
 
-staged as (
+standardized as (
 
     select
         -- guids
-        order_id as order_guid
+        {{ dbt_utils.surrogate_key(['order_id', 'product_id']) }} as order_product_guid
+        , order_id as order_guid
         , product_id as product_guid
         
         -- numeric
@@ -21,4 +22,4 @@ staged as (
 
 )
 
-select * from staged
+select * from standardized

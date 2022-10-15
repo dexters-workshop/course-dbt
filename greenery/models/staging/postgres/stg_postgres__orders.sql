@@ -7,7 +7,7 @@ with orders_source as (
 
 ),
 
-staged as (
+standardized as (
 
     select
         -- guids/ids
@@ -35,4 +35,4 @@ staged as (
 
 )
 
-select * from staged
+select * from standardized

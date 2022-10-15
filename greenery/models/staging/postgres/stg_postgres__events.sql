@@ -7,7 +7,7 @@ with event_source as (
 
 ),
 
-staged as (
+standardized as (
 
     select
         -- guids
@@ -28,4 +28,4 @@ staged as (
 
 )
 
-select * from staged
+select * from standardized
