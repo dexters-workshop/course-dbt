@@ -1,0 +1,5 @@
+version: 2
+
+models:
+  - name: dim_all_dates
+    description: "Date dimension table"
