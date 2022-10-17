@@ -15,7 +15,7 @@ standardized as (
         , user_id as user_guid
         , tracking_id as tracking_guid
         , address_id as address_guid
-        , promo_id
+        , promo_id as promo_code
 
         -- timestamps
         , created_at as created_at_utc

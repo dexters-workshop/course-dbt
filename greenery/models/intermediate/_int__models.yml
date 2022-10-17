@@ -1,0 +1,9 @@
+version: 2
+
+
+models:
+  - name: int_promos_dates_added
+    description: "Intermediate promo table with promotional dates added"
+
+  - name: int_users_joined_with_user_details
+    description: "Intermediate user table with additional user details joined and added"

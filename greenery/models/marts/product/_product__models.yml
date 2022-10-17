@@ -1,0 +1,6 @@
+version: 2
+
+
+models:
+  - name: dim_products
+    description: "Contains ALL greenery products and their associated details"
