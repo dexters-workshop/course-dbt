@@ -37,17 +37,17 @@ What is our user repeat rate? **79.8% of users are repeat customers**
 ### SECTION 02
 
 What are good indicators of a user who will likely purchase again? 
-- repeat customers are probably more likely to purchase again
-- big spenders, big baskets, email-subscribers, promo-shoppers
+- **repeat customers are probably more likely to purchase again**
+**- big spenders, big baskets, email-subscribers, promo-shoppers**
 
 What about indicators of users who are likely NOT to purchase again? 
-- days since last purchase is high
-- did not sign up for emails, purchased as guest
-- low spend, small baskets, promo-shoppers
+- **days since last purchase is high**
+- **did not sign up for emails, purchased as guest**
+- **low spend, small baskets, promo-shoppers**
 
 If you had more data, what features would you want to look into to answer this question?
-- email-subscriber list, guest-purchase flag
-- platform they signed up on, gift-purchase flag, NPS scores
+- **email-subscriber list, guest-purchase flag**
+- **platform they signed up on, gift-purchase flag, NPS scores**
 
 <br>
 
@@ -55,26 +55,12 @@ If you had more data, what features would you want to look into to answer this q
 
 More stakeholders are coming to us for data, which is great! But we need to get some more models created before we can help. 
 
-**Create a marts folder,** so we can organize our models, with the following subfolders for business units (DONE):
-1. Core
-2. Marketing
-3. Product
-
-<br>
-
-### SECTION 04
-
-Within each marts folder, create intermediate models and dimension/fact models.
-
-**NOTE:** think about what metrics might be particularly useful for these business units, and build dbt models using greenery’s data
-- For example, some “core” datasets could include fact_orders, dim_products, and dim_users
-
-- The marketing mart could contain a model like user_order_facts which contains order information at the user level
-
-- The product mart could contain a model like fact_page_views which contains all page view events from greenery’s events data
-
 Explain the marts models you added. Why did you organize the models in the way you did?
-- **answer:** ...
+
+- **I mainly focused on setting up Dimensional tables for each area of the business (core/marketing/product). Learned a ton along the way and have a ways to go. Planning to add in a few fact tables this week**
+
+
+Use the dbt docs to visualize your model DAGs to ensure the model layers make sense
 
 
 <br>
@@ -86,3 +72,34 @@ Use the dbt docs to visualize your model DAGs to ensure the model layers make se
 Paste in an image of your DAG from the docs. These commands will help you see the full DAG
 - dbt docs generate 
 - dbt docs serve --no-browser
+
+![Week 02 Dag](wk_02_dag.png)
+
+<br>
+
+## Part 2. Tests
+
+**DONE. Mainly added tests to the source/stage models for now.**
+- played around with macros/tests e.g., macro = bad_zipcodes.sql
+
+<br>
+
+## Part 3. dbt Snapshots
+
+Let's update our orders snapshot that we created last week to see how our data is changing:
+
+1. Run the orders snapshot model using dbt snapshot and query it in snowflake to see how the data has changed since last week. 
+
+    ```sql
+    -- view orders that changed
+    select * from snapshot_orders
+    where dbt_valid_to is not null
+    ```
+
+2. Which orders changed from week 1 to week 2? 
+
+    |changed_orders|
+    |--------------|
+    |914b8929-e04a-40f8-86ee-357f2be3a2a2|
+    |05202733-0e17-4726-97c2-0520c024ab85|
+    |939767ac-357a-4bec-91f8-a7b25edd46c9|
