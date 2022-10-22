@@ -1,4 +1,4 @@
-## Week 02 Homework
+## Week 02 Project
 
 <br>
 
@@ -73,7 +73,7 @@ Paste in an image of your DAG from the docs. These commands will help you see th
 - dbt docs generate 
 - dbt docs serve --no-browser
 
-![Week 02 Dag](wk_02_dag.png)
+![Week 02 Dag](images/wk_02_dag.png)
 
 <br>
 
@@ -92,14 +92,17 @@ Let's update our orders snapshot that we created last week to see how our data i
 
     ```sql
     -- view orders that changed
-    select * from snapshot_orders
-    where dbt_valid_to is not null
+    select order_id 
+    from snapshot_orders
+    where 
+        dbt_valid_to is not null
+        and date(dbt_valid_to) = current_date()
     ```
 
 2. Which orders changed from week 1 to week 2? 
 
     |changed_orders|
     |--------------|
-    |914b8929-e04a-40f8-86ee-357f2be3a2a2|
-    |05202733-0e17-4726-97c2-0520c024ab85|
-    |939767ac-357a-4bec-91f8-a7b25edd46c9|
+    |8385cfcd-2b3f-443a-a676-9756f7eb5404|
+    |e24985f3-2fb3-456e-a1aa-aaf88f490d70|
+    |5741e351-3124-4de7-9dff-01a448e7dfd4|

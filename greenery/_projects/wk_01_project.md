@@ -1,4 +1,4 @@
-## Week 01 Homework
+## Week 01 Project
 
 
 **Answer these questions using the data available using SQL queries.** 
