@@ -2,5 +2,14 @@ version: 2
 
 
 models:
-  - name: dim_promos
-    description: "Contains ALL greenery promotions and the details for each"
+  - name: dim_promos_lookup
+    description: |-
+      Dimensional table containing ALL unique greenery promotions
+      and the associated details for each - this table is mainly a
+      reference guide for looking up info about a promo and/or 
+      joining it to other tables to add promo-details.
+    columns:
+      - name: promo_code
+        tests:
+          - not_null
+          - unique

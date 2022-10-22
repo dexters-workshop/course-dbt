@@ -1,4 +1,4 @@
--- int_promos_dates_added.sql
+-- int_promos_live_dates_added.sql
 
 
 with 

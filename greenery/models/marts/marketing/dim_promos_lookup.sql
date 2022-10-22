@@ -1,10 +1,10 @@
--- dim_promos.sql
+-- dim_promos_lookup.sql
 
 with 
 
 int_promos as (
 
-    select * from {{ ref('int_promos_dates_added' )}}
+    select * from {{ ref('int_promos_live_dates_added' )}}
 
 ),
 
